@@ -1,7 +1,9 @@
+import Home from "../components/Home/Home";
+
 const childRoute=[
     {
         path:'/',
-        element:<h1>Hello</h1>
+        element:<Home></Home>
     }
 ]
 
