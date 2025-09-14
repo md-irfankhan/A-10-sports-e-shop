@@ -18,7 +18,7 @@ const Login = () => {
                     <TextInput id="password1" type="password" required />
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="text-[14px]">Haven't registered?<Link className="text-sky-600">Register Now</Link></p>
+                  <p className="text-[14px]">Haven't registered?<Link to={'/register'} className="text-sky-600">Register Now</Link></p>
                 </div>
                 <div className="flex items-center gap-2">
                     <Checkbox id="remember" />
