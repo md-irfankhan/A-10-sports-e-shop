@@ -1,6 +1,7 @@
 import AllProduct from "../components/AllProduct/AllProduct";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
+import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Register from "../components/Register/Register";
 
 const childRoute=[
@@ -19,6 +20,11 @@ const childRoute=[
     {
         path:'/register',
         element:<Register></Register>
+    }
+    ,
+    {
+        path:'/details',
+        element:<ProductDetails></ProductDetails>
     }
 ]
 
