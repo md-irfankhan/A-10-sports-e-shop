@@ -26,7 +26,13 @@ const DashboardTab = () => {
       id: 'products',
       label: 'Products',
       icon: Package,
-      href: '/products'
+      href: '/myproducts'
+    },
+    {
+      id: 'addproducts',
+      label: 'Add Product',
+      icon: Package,
+      href: '/add'
     },
     {
       id: 'signout',

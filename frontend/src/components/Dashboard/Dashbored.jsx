@@ -43,8 +43,11 @@ const Dashbored = () => {
                         <SidebarItem className={currents==('/dashboard/users'||'/dashboard/users/edit')?' bg-blue-300 hover:bg-blue-300 ':''}  icon={HiUserGroup}>
                             <Link to={'/dashboard/users'}>Users</Link>
                         </SidebarItem>
-                        <SidebarItem className={currents==('/dashboard/products'||'/dashboard/products/edit')?' bg-blue-300 hover:bg-blue-300 ':''} icon={HiShoppingBag}>
-                            Products
+                        <SidebarItem className={currents==('/dashboard/myproducts'||'/dashboard/myproducts/edit')?' bg-blue-300 hover:bg-blue-300 ':''} icon={HiShoppingBag}>
+                            <Link to={'/dashboard/myproducts'}>Products</Link>
+                        </SidebarItem>
+                        <SidebarItem className={currents==('/dashboard/add')?' bg-blue-300 hover:bg-blue-300 ':''} icon={HiShoppingBag}>
+                            <Link to={'/dashboard/add'}>Add Product</Link>
                         </SidebarItem>
                         <SidebarItem href="#" icon={HiArrowSmRight}>
                             Sign Out
