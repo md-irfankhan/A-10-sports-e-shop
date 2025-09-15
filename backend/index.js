@@ -32,6 +32,14 @@ async function run() {
     app.get('/', (req, res) => {
       res.send('Hello World!');
     })
+    app.get('/all',async(req,res)=>{
+      const cursor=spProducts.find();
+      const result=await cursor.toArray();
+      res.send(result)
+      
+
+
+    })
     app.post('/add',async (req,res)=> {
       const reqBody = req.body;
       console.log(reqBody);
