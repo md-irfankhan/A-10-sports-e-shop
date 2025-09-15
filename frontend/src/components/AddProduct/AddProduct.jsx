@@ -11,6 +11,8 @@ const AddProduct = () => {
         productDescription: ''
     });
 
+
+
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleChange = (e) => {
@@ -21,7 +23,38 @@ const AddProduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form data submitted:', formData);
+        fetch('http://localhost:3000/add', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(res => res.json()).then(data => {
+            setFormData({
+                productName: '',
+                category: '',
+                photoUrl: '',
+                productColor: '',
+                supplierName: '',
+                supplierEmail: '',
+                productDescription: ''
+            })
+
+            console.log(data);
+
+        })
+
+        // setInterval(() => {
+        //     setIsSubmitted(true);
+
+        // }, 4000)
         setIsSubmitted(true);
+        setTimeout(() => {
+            setIsSubmitted(false);
+            console.log("Stopped!");
+        }, 5000);
+
+
         // You would typically send this data to a server here.
     };
 
