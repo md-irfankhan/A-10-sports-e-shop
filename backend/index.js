@@ -8,7 +8,7 @@ app.use(express.json());
 require('dotenv').config();
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.oenll6g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -39,6 +39,13 @@ async function run() {
       
 
 
+    })
+    app.get('/find/:id',async(req,res)=>{
+      const id=req.params.id;
+      const query={_id:new ObjectId(id)};
+      const result=await spProducts.findOne(query);
+      // const result=await cursor.toArray();
+      res.send(result)
     })
     app.post('/add',async (req,res)=> {
       const reqBody = req.body;
