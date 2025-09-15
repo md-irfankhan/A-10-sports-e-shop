@@ -1,0 +1,7 @@
+.active {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #3b82f6;
+    color: #2563eb;
+    background-color: #eff6ff;
+}
