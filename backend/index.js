@@ -29,11 +29,22 @@ async function run() {
 
     const sportsEShop = client.db("sportsEShop");
     const spProducts = sportsEShop.collection("products");
+    const users=sportsEShop.collection("users")
     app.get('/', (req, res) => {
       res.send('Hello World!');
     })
     app.get('/all',async(req,res)=>{
       const cursor=spProducts.find();
+      const result=await cursor.toArray();
+      res.send(result)
+      
+
+
+    })
+    app.get('/all/:email',async(req,res)=>{
+      const email=req.params.email;
+      const query={supplierEmail:email}
+      const cursor=spProducts.find(query);
       const result=await cursor.toArray();
       res.send(result)
       
@@ -60,7 +71,39 @@ async function run() {
       const result=await spProducts.deleteOne(query);
       res.send(result)
     })
-    
+    app.put('/update',async(req,res)=>{
+      const reqBody=req.body;
+      const query={_id:new ObjectId(reqBody._id)}
+      const update={
+        $set:{
+          productName:reqBody.productName,
+          category:reqBody.category,
+          photoUrl:reqBody.photoUrl,
+          productColor:reqBody.productColor,
+          supplierName:reqBody.supplierName,
+          supplierEmail:reqBody.supplierEmail,
+          productDescription:reqBody.productDescription
+
+        }
+      }
+      const options = { upsert: true };
+      const result = await spProducts.updateOne(query, update, options);
+      res.send(result)
+
+
+    })
+
+    app.post('/adduser',async(req,res)=>{
+      const reqBody=req.body;
+      const result=await users.insertOne(reqBody);
+      res.send(result)
+    })
+    app.delete('/deleteuser/:email',async(req,res)=>{
+      const email=req.params.email;
+      const query={email:email}
+      const result=await users.deleteOne(query);
+      res.send(result)
+    })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
