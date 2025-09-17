@@ -50,6 +50,7 @@ const childRoute=[
             },
             {
                 path:'/dashboard/users',
+                loader:()=>fetch('http://localhost:3000/users'),
                 element:<Users></Users>
             },
             {
