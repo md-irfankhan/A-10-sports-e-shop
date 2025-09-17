@@ -1,9 +1,18 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { useAuth } from "../../AuthProvider/AuthProvider";
 import auth from "../../firebase/firebase.init";
+import Spinner from "../Spinner/Spinner";
 const Register = () => {
-    const {createUser,updateUser}=useAuth();
+    const {createUser,updateUser,user,loading}=useAuth();
+    const location=useLocation();
+    const navigate=useNavigate()
+    if(loading){
+        return <Spinner></Spinner>
+    }
+    if(user){
+        return <Navigate to={location.state?location.state:'/'}></Navigate>
+    }
     
     const handleRegister=(e)=>{
         e.preventDefault();
@@ -34,7 +43,8 @@ const Register = () => {
                 }).then(res=>res.json()).then(data=>{
                         console.log(data);
                         
-                })
+                });
+                navigate(location.state?location.state:'/')
                 
                 
             })
@@ -78,7 +88,7 @@ const Register = () => {
                     <TextInput id="repeat-password" type="password" required shadow />
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="text-[14px]">Already have account?<Link to={'/login'} className="text-sky-600">Login Now</Link></p>
+                  <p className="text-[14px]">Already have account?<Link state={location.state} to={'/login'} className="text-sky-600">Login Now</Link></p>
                 </div>
                 <div className="flex items-center gap-2">
                     <Checkbox id="agree" />
