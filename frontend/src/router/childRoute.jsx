@@ -47,6 +47,7 @@ const childRoute=[
             },
             {
                 path:'/dashboard/myproducts',
+                
                 element:<MyProducts></MyProducts>
             },
             {

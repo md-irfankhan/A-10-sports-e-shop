@@ -1,6 +1,18 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../AuthProvider/AuthProvider";
+import { Link } from "react-router";
 
 const MyProducts = () => {
+  const {user}=useAuth()
+  const [myProd,setmyProd]=useState([])
+  useEffect(()=>{
+    fetch(`http://localhost:3000/all/${user?.email}`).then(res=>res.json())
+    .then(data=>{
+      setmyProd(data)
+    })
+
+  },[])
     return (
          <div className="overflow-x-auto">
       <Table hoverable>
@@ -19,58 +31,33 @@ const MyProducts = () => {
           </TableRow>
         </TableHead>
         <TableBody className="divide-y">
+
+          {
+            myProd.map(product=>(
           <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              Apple MacBook Pro 17"
+              {product.productName}
             </TableCell>
-            <TableCell>Sliver</TableCell>
-            <TableCell>Laptop</TableCell>
-            <TableCell>$2999</TableCell>
+            <TableCell>{product.productColor}</TableCell>
+            <TableCell>{product.category}</TableCell>
+            <TableCell>{product.price}</TableCell>
             <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+              <Link to={`/update/${product._id}`} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                 Edit
-              </a>
+              </Link>
             </TableCell>
             <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+              <a className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                 Delete
               </a>
             </TableCell>
           </TableRow>
-          <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              Microsoft Surface Pro
-            </TableCell>
-            <TableCell>White</TableCell>
-            <TableCell>Laptop PC</TableCell>
-            <TableCell>$1999</TableCell>
-            <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                Edit
-              </a>
-            </TableCell>
-               <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                Delete
-              </a>
-            </TableCell>
-          </TableRow>
-          <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Magic Mouse 2</TableCell>
-            <TableCell>Black</TableCell>
-            <TableCell>Accessories</TableCell>
-            <TableCell>$99</TableCell>
-            <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                Edit
-              </a>
-            </TableCell>
-               <TableCell>
-              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                Delete
-              </a>
-            </TableCell>
-          </TableRow>
+            )
+
+          )
+          }
+
+         
         </TableBody>
       </Table>
     </div>
