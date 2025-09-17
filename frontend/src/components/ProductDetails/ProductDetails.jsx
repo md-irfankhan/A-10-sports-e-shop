@@ -1,6 +1,11 @@
 import React from 'react';
+import { useLoaderData } from 'react-router';
 
 const ProductDetails = () => {
+    const data=useLoaderData();
+    console.log(data);
+    
+    const {productName,category,photoUrl,productColor,supplierName,supplierEmail,productDescription,price}=data;
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +15,7 @@ const ProductDetails = () => {
                         <div className="space-y-4">
                             <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src={photoUrl}
                                     alt="Nike Air Max Running Shoes"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 />
@@ -22,14 +27,14 @@ const ProductDetails = () => {
                             {/* Product Category */}
                             <div>
                                 <span className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
-                                    Running Shoes
+                                    {category}
                                 </span>
                             </div>
 
                             {/* Product Title */}
                             <div>
                                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                                    Nike Air Max Pro Running Shoes
+                                   {productName}
                                 </h1>
                             </div>
 
@@ -38,7 +43,7 @@ const ProductDetails = () => {
                                 <div className="flex items-center space-x-2">
                                     <span className="text-sm text-gray-600">Supplied by:</span>
                                     <span className="text-sm font-semibold text-gray-900 bg-gray-100 px-3 py-1 rounded-full">
-                                        SportZone Athletics
+                                    {supplierName}
                                     </span>
                                 </div>
                             </div>
@@ -46,11 +51,11 @@ const ProductDetails = () => {
                             {/* Price */}
                             <div className="border-t border-gray-200 pt-6">
                                 <div className="flex items-center space-x-3">
-                                    <span className="text-4xl font-bold text-gray-900">$129.99</span>
-                                    <span className="text-lg text-gray-500 line-through">$159.99</span>
-                                    <span className="bg-red-100 text-red-800 text-sm font-semibold px-2 py-1 rounded">
+                                    <span className="text-4xl font-bold text-gray-900">${price}</span>
+                                    {/* <span className="text-lg text-gray-500 line-through">$159.99</span> */}
+                                    {/* <span className="bg-red-100 text-red-800 text-sm font-semibold px-2 py-1 rounded">
                                         Save $30
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <p className="text-sm text-gray-600 mt-1">Free shipping included</p>
                             </div>
@@ -60,9 +65,7 @@ const ProductDetails = () => {
                                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Details</h2>
                                 <div className="space-y-3 text-gray-700">
                                     <p className="leading-relaxed">
-                                        Professional-grade running shoes designed for serious athletes and fitness enthusiasts.
-                                        Features advanced cushioning technology and breathable materials for maximum comfort
-                                        during long training sessions.
+                                       {productDescription}
                                     </p>
 
                                     <div className="grid grid-cols-2 gap-4 pt-4">
@@ -71,8 +74,8 @@ const ProductDetails = () => {
                                             <p className="text-sm text-gray-600">Synthetic mesh upper</p>
                                         </div>
                                         <div>
-                                            <span className="text-sm font-medium text-gray-900">Sole:</span>
-                                            <p className="text-sm text-gray-600">Rubber with air cushioning</p>
+                                            <span className="text-sm font-medium text-gray-900">Color:</span>
+                                            <p className="text-sm text-gray-600">{productColor}</p>
                                         </div>
                                         <div>
                                             <span className="text-sm font-medium text-gray-900">Weight:</span>

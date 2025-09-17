@@ -19,6 +19,7 @@ const childRoute=[
     },
     {
         path:'/allproducts',
+        loader:()=>fetch('http://localhost:3000/all'),
         element:<AllProduct></AllProduct>
     },
     {
@@ -31,7 +32,8 @@ const childRoute=[
     }
     ,
     {
-        path:'/details',
+        path:'/details/:id',
+        loader:({params})=>fetch(`http://localhost:3000/find/${params.id}`),
         element:<ProductDetails></ProductDetails>
     },
     {

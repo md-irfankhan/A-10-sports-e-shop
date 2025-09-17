@@ -1,6 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Tooltip } from "flowbite-react";
+import { Link, useLoaderData } from "react-router";
 
 const AllProduct = () => {
+    const data=useLoaderData()
     return (
         <div className="overflow-x-auto max-w-[1250px] mx-auto my-4">
             <Table hoverable>
@@ -18,55 +20,27 @@ const AllProduct = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody className="divide-y">
+                    {
+                        data.map(product=>(
+                    
                     <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
                         <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Apple MacBook Pro 17"
+                            {product.productName}
                         </TableCell>
-                        <TableCell>Sliver</TableCell>
+                        <TableCell>{product.productColor}</TableCell>
                         <TableCell>Laptop</TableCell>
-                        <Tooltip content={'irf@gt'}>
-                            <TableCell>Irfan Khan</TableCell>
+                        <Tooltip content={product.supplierEmail}>
+                            <TableCell>{product.supplierName}</TableCell>
 
                         </Tooltip>
-                        <TableCell>$2999</TableCell>
+                        <TableCell>${product.price}</TableCell>
                         <TableCell>
-                            <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                            <Link to={`/details/${product._id}`} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                                 View Details
-                            </a>
+                            </Link>
                         </TableCell>
                     </TableRow>
-                    <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Microsoft Surface Pro
-                        </TableCell>
-                        <TableCell>White</TableCell>
-                        <TableCell>Laptop PC</TableCell>
-                         <Tooltip content={'irf@gt'}>
-                            <TableCell>Irfan Khan</TableCell>
-
-                        </Tooltip>
-                        <TableCell>$1999</TableCell>
-                        <TableCell>
-                            <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                                View Details
-                            </a>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Magic Mouse 2</TableCell>
-                        <TableCell>Black</TableCell>
-                        <TableCell>Accessories</TableCell>
-                         <Tooltip content={'irf@gt'}>
-                            <TableCell>Irfan Khan</TableCell>
-
-                        </Tooltip>
-                        <TableCell>$99</TableCell>
-                        <TableCell>
-                            <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                                View Details
-                            </a>
-                        </TableCell>
-                    </TableRow>
+                     ))}
                 </TableBody>
             </Table>
         </div>
