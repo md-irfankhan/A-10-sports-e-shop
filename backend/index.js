@@ -92,6 +92,11 @@ async function run() {
 
 
     })
+    app.get('/users',async(req,res)=>{
+      const cursor=users.find();
+      const result=await cursor.toArray()
+      res.send(result)
+    })
 
     app.post('/adduser',async(req,res)=>{
       const reqBody=req.body;
