@@ -78,7 +78,7 @@ const MyProducts = () => {
                 <TableCell>{product.category}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>
-                  <Link to={`/update/${product._id}`} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                  <Link to={`/dashboard/update/${product._id}`} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                     Edit
                   </Link>
                 </TableCell>

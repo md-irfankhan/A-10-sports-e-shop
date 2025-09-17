@@ -6,62 +6,69 @@ import Login from "../components/Login/Login";
 import MyProducts from "../components/MyProducts/MyProducts";
 import Private from "../components/Private/Private";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
+import ProductUpdate from "../components/ProductUpdate/ProductUpdate";
 import Profile from "../components/Profile/Profile";
 import ProfileUpdate from "../components/ProfileUpdate/ProfileUpdate";
 import Register from "../components/Register/Register";
 import Users from "../components/Users/Users";
 
-const childRoute=[
+const childRoute = [
     {
-        path:'/',
-        loader:()=>fetch('http://localhost:3000/all'),
-        element:<Home></Home>
+        path: '/',
+        loader: () => fetch('http://localhost:3000/all'),
+        element: <Home></Home>
     },
     {
-        path:'/allproducts',
-        loader:()=>fetch('http://localhost:3000/all'),
-        element:<AllProduct></AllProduct>
+        path: '/allproducts',
+        loader: () => fetch('http://localhost:3000/all'),
+        element: <AllProduct></AllProduct>
     },
     {
-        path:'/login',
-        element:<Login></Login>
+        path: '/login',
+        element: <Login></Login>
     },
     {
-        path:'/register',
-        element:<Register></Register>
+        path: '/register',
+        element: <Register></Register>
     }
     ,
     {
-        path:'/details/:id',
-        loader:({params})=>fetch(`http://localhost:3000/find/${params.id}`),
-        element:<ProductDetails></ProductDetails>
+        path: '/details/:id',
+        loader: ({ params }) => fetch(`http://localhost:3000/find/${params.id}`),
+        element: <ProductDetails></ProductDetails>
     },
     {
-        path:'/dashboard',
-        element:<Private><Dashbored></Dashbored></Private>,
-        children:[
+        path: '/dashboard',
+        element: <Private><Dashbored></Dashbored></Private>,
+        children: [
             {
-                path:'/dashboard/profile',
-                element:<Profile></Profile>
+                path: '/dashboard/profile',
+                element: <Profile></Profile>
             },
             {
-                path:'/dashboard/profile/edit',
-                element:<ProfileUpdate></ProfileUpdate>
+                path: '/dashboard/profile/edit',
+                element: <ProfileUpdate></ProfileUpdate>
             },
             {
-                path:'/dashboard/users',
-                loader:()=>fetch('http://localhost:3000/users'),
-                element:<Users></Users>
+                path: '/dashboard/users',
+                loader: () => fetch('http://localhost:3000/users'),
+                element: <Users></Users>
             },
             {
-                path:'/dashboard/myproducts',
-                
-                element:<MyProducts></MyProducts>
+                path: '/dashboard/myproducts',
+
+                element: <MyProducts></MyProducts>
             },
             {
-                path:'/dashboard/add',
-                element:<AddProduct></AddProduct>
+                path: '/dashboard/add',
+                element: <AddProduct></AddProduct>
             },
+            {
+                path: '/dashboard/update/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/find/${params.id}`),
+                element: <ProductUpdate></ProductUpdate>
+            },
+
         ]
     }
 ]

@@ -82,7 +82,8 @@ async function run() {
           productColor:reqBody.productColor,
           supplierName:reqBody.supplierName,
           supplierEmail:reqBody.supplierEmail,
-          productDescription:reqBody.productDescription
+          productDescription:reqBody.productDescription,
+          price:reqBody.price
 
         }
       }
