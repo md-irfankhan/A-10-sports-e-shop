@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { useAuth } from "../../AuthProvider/AuthProvider";
 
 const AddProduct = () => {
+    const{user}=useAuth()
     const [formData, setFormData] = useState({
         productName: '',
         category: '',
         photoUrl: '',
         productColor: '',
-        supplierName: '',
-        supplierEmail: '',
-        productDescription: ''
+        supplierName: user?.displayName,
+        supplierEmail: user?.email,
+        productDescription: '',
+        price:''
     });
-
+    console.log(user);
+    
 
 
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,9 +39,10 @@ const AddProduct = () => {
                 category: '',
                 photoUrl: '',
                 productColor: '',
-                supplierName: '',
-                supplierEmail: '',
-                productDescription: ''
+                supplierName: user?.displayName,
+                supplierEmail:user?.email ,
+                productDescription: '',
+                price:''
             })
 
             console.log(data);
@@ -113,12 +118,12 @@ const AddProduct = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="supplierName" className="block text-sm font-medium text-gray-700">Supplier Name</label>
+                            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
                             <input
                                 type="text"
-                                id="supplierName"
-                                name="supplierName"
-                                value={formData.supplierName}
+                                id="price"
+                                name="price"
+                                value={formData.price}
                                 onChange={handleChange}
                                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             />
@@ -132,6 +137,7 @@ const AddProduct = () => {
                                 name="supplierEmail"
                                 value={formData.supplierEmail}
                                 onChange={handleChange}
+                                disabled
                                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             />
                         </div>

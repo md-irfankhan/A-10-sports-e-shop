@@ -12,10 +12,11 @@ import {
   HiUserGroup,
   
 } from "react-icons/hi";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Navigate, Outlet, useLocation } from "react-router";
 import { useState,useEffect } from "react";
 import DashboardTab from "../DashboardTab/DashboardTab";
 const Dashbored = () => {
+    const location =useLocation()
       const [width, setWidth] = useState(window.innerWidth);
          useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
@@ -25,10 +26,13 @@ const Dashbored = () => {
         // return () => window.removeEventListener("resize", handleResize);
       }, []);
       console.log( width<1024);
-      const location=useLocation();
-      const currents=location.pathname;
     
-      
+      const currents=location.pathname;
+    if(location.pathname=='/dashboard' || location.pathname=='/dashboard/'){
+        return <Navigate to={'/dashboard/profile'}></Navigate>
+
+    }
+    
       
     return (
         <div className="flex flex-col lg:flex-row gap-4">

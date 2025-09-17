@@ -1,32 +1,33 @@
 import { Card ,Tooltip} from "flowbite-react";               
+import { Link } from "react-router";
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
+  const {_id,category,photoUrl,productColor,productDescription,productName,supplierEmail,supplierName}=product;
     return (
         <Card
       className="max-w-sm"
       imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-      imgSrc="data:image/jpeg;base64,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"
+      imgSrc={photoUrl}
+      
     >
       <a href="#">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
+          {productName}
         </h5>
       </a>
       <div className="mb-2 flex flex-wrap gap-1.5">
           <span className="bg-blue-100  text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
-            Sports Equipment
+           {category}
           </span>
-          <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
-            Sports Equipment
-          </span>
+          
         </div>
       <div className="mb-5 mt-2.5 flex items-center">
        
        
        <span className="font-medium">By_</span>
-       <Tooltip content="irf@gt.com">
+       <Tooltip content={supplierEmail}>
         <span className="ml-3 mr-2 rounded bg-cyan-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-cyan-200 dark:text-cyan-800">
-          Irfan Khan
+          {supplierName}
         </span>
       
        </Tooltip>
@@ -34,11 +35,11 @@ const ProductCard = () => {
         
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+        {/* <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span> */}
          <button
             className="border border-white/30 text-cyan-700 bg-white bg-opacity-20 backdrop-blur-sm px-5 py-2.5 text-center text-sm font-medium rounded-lg hover:bg-white hover:bg-opacity-30 hover:text-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 focus:ring-opacity-50 dark:border-cyan-400 dark:border-opacity-30 dark:text-cyan-400 dark:bg-gray-800 dark:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:bg-opacity-30 dark:hover:text-cyan-300 dark:focus:ring-cyan-800 transition-all duration-300 shadow-lg"
           >
-            View Details
+            <Link to={`/details/${_id}`}>View Details</Link>
           </button>
       </div>
     </Card>
