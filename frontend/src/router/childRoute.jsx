@@ -7,6 +7,7 @@ import MyProducts from "../components/MyProducts/MyProducts";
 import Private from "../components/Private/Private";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Profile from "../components/Profile/Profile";
+import ProfileUpdate from "../components/ProfileUpdate/ProfileUpdate";
 import Register from "../components/Register/Register";
 import Users from "../components/Users/Users";
 
@@ -40,6 +41,10 @@ const childRoute=[
             {
                 path:'/dashboard/profile',
                 element:<Profile></Profile>
+            },
+            {
+                path:'/dashboard/profile/edit',
+                element:<ProfileUpdate></ProfileUpdate>
             },
             {
                 path:'/dashboard/users',

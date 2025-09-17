@@ -1,6 +1,9 @@
 import { Edit3 } from 'lucide-react';
+import { useAuth } from '../../AuthProvider/AuthProvider';
+import { Link } from 'react-router';
 
 const Profile = () => {
+    const {user}=useAuth()
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +13,7 @@ const Profile = () => {
                         <div className="flex justify-center mb-6">
                             <div className="relative">
                                 <img
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                    src={user?.photoURL}
                                     alt="Profile"
                                     className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
                                 />
@@ -23,7 +26,7 @@ const Profile = () => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-600 mb-1">Full Name</label>
                                 <h2 className="text-2xl font-bold text-gray-900">
-                                    John Anderson
+                                    {user?.displayName}
                                 </h2>
                             </div>
 
@@ -31,7 +34,7 @@ const Profile = () => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-600 mb-1">Email Address</label>
                                 <p className="text-lg text-gray-700">
-                                    john.anderson@email.com
+                                    {user?.email}
                                 </p>
                             </div>
                         </div>
@@ -40,7 +43,7 @@ const Profile = () => {
                         <div className="mt-8">
                             <button className="w-full bg-white bg-opacity-20 backdrop-blur-sm border border-blue-500 border-opacity-50 text-blue-600 py-3 px-6 rounded-xl font-semibold hover:bg-blue-50 hover:bg-opacity-50 hover:border-opacity-70 transition-all duration-300 shadow-lg flex items-center justify-center space-x-2">
                                 <Edit3 className="w-5 h-5" />
-                                <span>Edit Profile</span>
+                                <Link to={'/dashboard/profile/edit'}>Edit Profile</Link>
                             </button>
                         </div>
 
